@@ -39,3 +39,13 @@ main {
   text-align: center;
   font-size: 1.75rem;
 }
+
+.currency {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.currency ul {
+  list-style: none;
+}
