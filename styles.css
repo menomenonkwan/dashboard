@@ -1,20 +1,18 @@
 :root {
-  --white: #efe;
+  --white: #fefefe;
   --black: #101;
 }
 
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
   background-color: var(--black, black);
-  background: no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+  background: no-repeat center center fixed;
   background-size: cover;
   color: var(--white, white);
   font-family: 'Roboto', Helvetica, sans-serif;
@@ -24,28 +22,96 @@ body {
 
 main {
   min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 1rem;
 }
 
 .top, .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .center {
   text-align: center;
-  font-size: 1.75rem;
+  font-size: 2.25rem;
 }
 
 .currency {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.currency h3 {
+  font-size: 1.5rem;
 }
 
 .currency ul {
   list-style: none;
+  padding: 0.25rem 1.25rem;
+}
+
+.currency li {
+  font-size: 1.2rem;
+}
+
+.weather {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr auto;
+  grid-template-columns: 1fr auto;
+      grid-template-areas: 
+    "icon temp"
+    "city city";
+}
+
+.weather img {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: icon;
+}
+
+.weather h2 {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: temp;
+  font-size: 2rem;
+  -ms-grid-column-align: self-end;
+      justify-self: self-end;
+  -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.weather p {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: city;
+  -ms-grid-column-align: self-end;
+      justify-self: self-end;
+  font-size: 1.1rem;
+}
+
+.photograher {
+  font-size: 1rem;
 }

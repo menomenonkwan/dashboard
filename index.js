@@ -2,6 +2,7 @@ const photographer = document.querySelector('.photograher');
 const time = document.querySelector('.current-time');
 const day = document.querySelector('.current-day');
 const currency = document.querySelector('.currency');
+const weather = document.querySelector('.weather');
 
 // GET BACKGROUND IMAGE from unsplash on page load
 fetch('https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature')
@@ -43,3 +44,23 @@ fetch('https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&que
       `;
     })
     .catch(err => console.error(err));
+
+
+// GET WEATHER
+navigator.geolocation.getCurrentPosition(position => {
+  fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`)
+    .then(res => {
+      if (!res.ok) { throw Error("Weather not available")}
+      return res.json();
+    })
+    .then(data => {
+      console.log(data);
+      const weatherIcon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      weather.innerHTML =`
+        <img src=${weatherIcon} alt="" />
+        <h2>${Math.round(data.main.temp)}&deg;</h2>
+        <p>${data.name}</p>
+      `;
+    })
+    .catch(err => console.log(err));
+});
