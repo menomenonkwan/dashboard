@@ -1,6 +1,7 @@
 const photographer = document.querySelector('.photograher');
 const time = document.querySelector('.current-time');
 const day = document.querySelector('.current-day');
+const quote = document.querySelector('.quote');
 const currency = document.querySelector('.currency');
 const weather = document.querySelector('.weather');
 
@@ -54,7 +55,6 @@ navigator.geolocation.getCurrentPosition(position => {
       return res.json();
     })
     .then(data => {
-      console.log(data);
       const weatherIcon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
       weather.innerHTML =`
         <img src=${weatherIcon} alt="" />
@@ -64,3 +64,15 @@ navigator.geolocation.getCurrentPosition(position => {
     })
     .catch(err => console.log(err));
 });
+
+
+// GET QUOTE
+fetch('https://api.quotable.io/random')
+  .then(res => {
+    if (!res.ok) { throw Error('Quote not available') }
+    return res.json()
+  })
+  .then(data => {
+    quote.innerHTML = `<p>${data.content}</p><cite>- ${data.author}</cite>`;
+  })
+  .catch(err => console.log(err));
